@@ -20,6 +20,7 @@ pipeline {
         } 
         stage('Build') {
             steps{
+                sh 'ls'
                 buildImage()
         }}
         stage('random-Execution-stage') {            
