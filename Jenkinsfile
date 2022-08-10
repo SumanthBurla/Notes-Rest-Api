@@ -63,6 +63,6 @@ def buildImage(){
 }
 
 def pushImage(){
-    sh('docker push $IMAGE_NAME:v$BUILD_ID.0')
+    sh('docker push $IMAGE_NAME:v0.$BUILD_ID')
     echo "----- ${IMAGE_NAME} pushed -----"
 }
