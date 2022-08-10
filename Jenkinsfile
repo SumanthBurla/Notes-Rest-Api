@@ -5,7 +5,7 @@ pipeline {
     }
     
     environment {
-        IMAGE_NAME="sburla/notes-api-13ss"
+        IMAGE_NAME="sburla/rest-api-13ss"
         DOCKERHUB_CREDENTIALS=credentials('DockerID')
     }
     stages {
