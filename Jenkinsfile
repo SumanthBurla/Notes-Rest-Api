@@ -20,7 +20,7 @@ pipeline {
         } 
         stage('Build') {
             steps{
-                sh 'ls ./build/'
+                sh 'ls ./build/libs/'
                 buildImage()
         }}
         stage('random-Execution-stage') {            
@@ -33,6 +33,11 @@ pipeline {
                 sh 'docker login -u $DOCKERHUB_CREDENTIALS_USR -p $(echo $DOCKERHUB_CREDENTIALS_PSW )'
                 // sh 'res=$(echo $?)'
                 // sh 'echo $res'
+            }
+        }
+        stage('Push to hub'){
+            steps{
+               pushImage()
             }
         }
     }
