@@ -23,11 +23,6 @@ pipeline {
                 sh 'ls ./build/libs/'
                 buildImage()
         }}
-        stage('random-Execution-stage') {            
-            steps{
-                sh 'ls'
-            }
-        }
         stage('Dockerhub-login'){
             steps{
                 sh 'docker login -u $DOCKERHUB_CREDENTIALS_USR -p $(echo $DOCKERHUB_CREDENTIALS_PSW )'
