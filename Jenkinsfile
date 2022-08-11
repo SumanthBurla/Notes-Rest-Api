@@ -16,7 +16,7 @@ pipeline {
             steps{
                 sh 'ls'
                 sh 'cat ./src/main/resources/application-dev.properties'
-                sh 'gradle build'
+                sh 'gradle build -x test'
             }
         }
         stage('Build docker image') {
