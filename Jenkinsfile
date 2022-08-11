@@ -3,22 +3,21 @@ pipeline {
     agent {
         node { label 'default' }
     }
-    
+    tools {
+        dockerTool 'myDocker'
+        gradle '7.5.1'
+    }
     environment {
         IMAGE_NAME="sburla/notes-api-13ss"
         DOCKERHUB_CREDENTIALS=credentials('DockerID')
     }
     stages {
-        stage('Initialize'){
+        stage('Build JAR file'){
             steps{
-                script{
-                    def dockerHome = tool 'myDocker'
-                    env.PATH = "${dockerHome}/bin:${env.PATH}"
-                    echo "Running ${env.BUILD_ID} job on ${env.JENKINS_URL}"
-                }
+                sh 'gradle build -x test'
             }
-        } 
-        stage('Build') {
+        }
+        stage('Build docker image') {
             steps{
                 sh 'ls ./build/libs/'
                 buildImage()
