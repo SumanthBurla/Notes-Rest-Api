@@ -14,7 +14,6 @@ pipeline {
     stages {
         stage('Build JAR file'){
             steps{
-                sh 'ls'
                 sh 'cat ./src/main/resources/application-dev.properties'
                 sh 'gradle build -x test'
             }
@@ -31,7 +30,7 @@ pipeline {
                 // sh 'echo $res'
             }
         }
-        stage('Push to hub'){
+        stage('Push to hub.docker.com'){
             steps{
                pushImage()
             }
@@ -55,7 +54,7 @@ pipeline {
 def buildImage(){
     sh('docker build -t $IMAGE_NAME:v0.$BUILD_ID .')
     echo "Build complete..."
-    sh('docker images')
+    // to check build use docker images
 }
 
 def pushImage(){
